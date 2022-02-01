@@ -1,7 +1,8 @@
-# CovidTestForm
-This project demonstrates my approach to implement a software solution for covid test centres. 
+# Test Centre Sample
+This project demonstrates my approach to implement a software solution for covid-19 test centres. 
 I wrote this while I was in college to help out a friend who in that time ran a covid test centre.
 This version of the source code does not reflect the entire project. I've removed some files and parts of the source code because this project was used in production. Therefore, some private information regarding my client was embedded within some html files or the result pdf pages.
+
 
 ### This code may serve as a reference for employers by demonstrating the following skills among others:
 - competence in writing java code
@@ -19,4 +20,5 @@ This version of the source code does not reflect the entire project. I've remove
 - Generation of covid test certificates in pdf format
 - Some basic JUnit Test Cases
 
+Also: I brought this over from a private repository. Sadly you won't be able to comprehend the development process.
 Thanks a ton for taking a look :)
