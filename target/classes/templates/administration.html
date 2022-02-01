@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Administration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+            crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-secondary">
+    <a class="navbar-brand">Adminpanel</a>
+    <a class="btn btn-primary" type="submit" th:href="@{/admin/fallback/}">Ergebnisse</a>
+    <a class="btn btn-success" type="submit" th:href="@{/admin/}">Neu laden</a>
+    <a type="submit" class="btn btn-outline-danger my-2 my-sm-0" th:href="@{/logout/}">Ausloggen</a>
+</nav>
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <!--
+            <th scope="col">Download</th>
+            <th scope="col">Download</th>
+            -->
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Nachname</th>
+            <th scope="col">Geburtstag</th>
+            <th scope="col">Straße</th>
+            <th scope="col">Hausnr</th>
+            <th scope="col">PLZ</th>
+            <th scope="col">Ort</th>
+            <th scope="col">E-Mail</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="registration : ${registrations}">
+            <!--
+              <td>
+                  <a class="btn btn-secondary btn-sm" type="submit"
+                     th:href="@{/admin/print/neg/{registrationId}(registrationId=${registration.getId()})}">Negativ</a>
+              </td>
+              <td>
+                  <a class="btn btn-secondary btn-sm" type="submit"
+                     th:href="@{/admin/print/pos/{registrationId}(registrationId=${registration.getId()})}">Positiv</a>
+              </td>
+              -->
+              <td><span th:text="${registration.getId()}"> # </span></td>
+              <td><span th:text="${registration.getFirstName()}"> Name </span></td>
+              <td><span th:text="${registration.getSurName()}"> Nachname </span></td>
+              <td><span th:text="${registration.getBirthDate()}"> Geburtstag </span></td>
+              <td><span th:text="${registration.getStreet()}"> Straße </span></td>
+              <td><span th:text="${registration.getHouseNumber()}"> Hausnummer </span></td>
+              <td><span th:text="${registration.getZipCode()}"> Postleitzahl </span></td>
+              <td><span th:text="${registration.getPlace()}"> Ort </span></td>
+              <td><span th:text="${registration.geteMail()}"> E-Mail </span></td>
+              <td>
+                  <a class="btn btn-secondary btn-sm" type="submit"
+                     th:href="@{/admin/delete/{registrationId}(registrationId=${registration.getId()})}">Löschen</a>
+              </td>
+              <td>
+                  <a class="btn btn-success btn-sm" type="submit"
+                     th:href="@{/admin/positive/{registrationId}(registrationId=${registration.getId()})}">Positiv</a>
+              </td>
+              <td>
+                  <a class="btn btn-danger btn-sm" type="submit"
+                     th:href="@{/admin/negative/{registrationId}(registrationId=${registration.getId()})}">Negativ</a>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+  </body>
+  </html>

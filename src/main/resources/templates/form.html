@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Schnelltest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="bg-light">
+<div class="container">
+
+    <!--/* Workaround for bug https://youtrack.jetbrains.com/issue/IDEA-132738 -->
+    <!--@thymesVar id="post" type="your.package.Post"-->
+    <!--@thymesVar id="title" type="String"-->
+    <!--@thymesVar id="content" type="String"-->
+    <!--*/-->
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" th:src="@{https://i.imgur.com/iDKBWtd.png}" alt="" width="200">
+        <h2>Covid Test Centre</h2>
+        <p class="lead">Um Wartezeiten zu verkürzen haben Sie die Möglichkeit Ihre Daten bereits im Vorfeld
+            festzuhalten.</p>
+        <p class="lead"><strong>Bitte beachten Sie: </strong><br>
+            Sie benötigen für Ihren Antigen Schnelltest keinen Termin. <br>
+            Die Anmeldung dient lediglich der Vermeidung langer Wartezeiten, die durch das manuelle Erfassen Ihrer
+            Kontaktdaten entstehen können. <br>
+            <strong>Sie stellt keine Terminvereinbarung dar. </strong></p>
+    </div>
+    <h4 class="mb-3">
+        Anmeldung Covid-19 Antigen Schnelltest
+    </h4>
+
+    <form th:action="@{/registerUser}" th:object="${registration}" method="POST">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 mb-3">
+                <label for="name" class="form-label">Vorname</label>
+                <input type="text" class="form-control" id="name" th:field="*{firstName}" aria-describedby="nameHelp"
+                       required>
+            </div>
+
+            <div class="col-md-6 col-sm-12 mb-3">
+                <label for="surname" class="form-label">Nachname</label>
+                <input type="text" class="form-control" id="surname" th:field="*{surName}"
+                       aria-describedby="surnameHelp" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-Mail</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <input type="email" class="form-control" id="email" th:field="*{eMail}" required>
+                <div class="invalid-feedback">
+                    Die E-Mail wird benötigt um Ihnen ihr Ergebnis zu senden.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Telefonnummer</label>
+            <div class="input-group has-validation">
+                <input type="tel" class="form-control" id="phone" placeholder="" th:field="*{phone}" required>
+                <div class="invalid-feedback">
+                    Die Telefonnummer wird verwendet um Sie im Fall eines positiven Testergebnisses zu erreichen.
+                </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label for="date" class="form-label">Geburtsdatum</label>
+            <input name="date" placeholder="DD.MM.YYYY" type="text" class="form-control" id="date"
+                   th:field="*{birthDate}"
+                   aria-describedby="birthdayHelp" data-date-viewmode="years" required>
+        </div>
+        <hr class="mb-4">
+
+        <h4 class="mb-3">Adresse</h4>
+
+        <div class="mb-3">
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <label for="street" class="form-label">Straße</label>
+                    <input type="text" class="form-control" id="street" th:field="*{street}"
+                           aria-describedby="streetHelp" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="housenumber" class="form-label">Hausnummer</label>
+                    <input type="number" class="form-control" id="housenumber" th:field="*{houseNumber}"
+                           aria-describedby="housenumberHelp" required>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="zipCode" class="form-label">Postleitzahl</label>
+                    <input type="number" class="form-control" id="zipCode" th:field="*{zipCode}"
+                           aria-describedby="zipCodeHelp" required>
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="place" class="form-label">Ort</label>
+                    <input type="text" class="form-control" id="place" th:field="*{place}" required>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="dsgvoCheck" required>
+            <label class="form-check-label" for="dsgvoCheck">
+                <p>Ich habe die <a th:href="@{/dsgvo}">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu,
+                    dass meine Angaben und Daten zur Beantwortung meiner Anfrage vorübergehend elektronisch erhoben und
+                    gespeichert werden.</p></label>
+        </div>
+        <div class="col-md-12 mb-3">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Bestätigen</button>
+        </div>
+    </form>
+</div>
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2021 Schnelltestzentrum Donautal</p>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a th:href="@{/dsgvo}">Datenschutz</a></li>
+        <li class="list-inline-item"><a th:href="@{/impressum}" href="#">Impressum</a></li>
+    </ul>
+
+    <script>
+    </script>
+
+</footer>
+</div>
+</body>
+</html>

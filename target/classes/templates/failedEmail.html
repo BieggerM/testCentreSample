@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fallback Datenspeicher</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-secondary">
+    <a class="navbar-brand">Adminpanel</a>
+    <a class="btn btn-primary" type="submit" th:href="@{/admin/fallback/}" >Ergebnisse</a>
+    <a class="btn btn-success" type="submit" th:href="@{/admin/}" >Zurück</a>
+    <a  type="submit" class="btn btn-outline-danger my-2 my-sm-0" th:href="@{/logout/}"  >Ausloggen</a>
+</nav>
+<div class="container">
+    <a class="btn btn-danger mb-4 mt-2" type="submit" th:href="@{/admin/fallback/deleteAll}">Alle Löschen</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Nachname</th>
+        <th scope="col">Straße</th>
+        <th scope="col">Hausnummer</th>
+        <th scope="col">Postleitzahl</th>
+        <th scope="col">Ort</th>
+        <th scope="col">Geburtstag</th>
+        <th scope="col">E-Mail</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Ergebnis</th>
+        <th scope="col">Erfasst</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="failedEmailTransaction : ${failedemailtransactions}">
+        <td><span th:text="${failedEmailTransaction.getId()}"> # </span></td>
+        <td><span th:text="${failedEmailTransaction.getFirstName()}"> Name </span></td>
+        <td><span th:text="${failedEmailTransaction.getSurName()}"> Nachname </span></td>
+        <td><span th:text="${failedEmailTransaction.getStreet()}"> Straße </span></td>
+        <td><span th:text="${failedEmailTransaction.getHouseNumber()}"> Hausnummer </span></td>
+        <td><span th:text="${failedEmailTransaction.getZipCode()}"> Postleitzahl </span></td>
+        <td><span th:text="${failedEmailTransaction.getPlace()}"> Ort </span></td>
+        <td><span th:text="${failedEmailTransaction.getBirthDate()}"> Ort </span></td>
+        <td><span th:text="${failedEmailTransaction.geteMail()}"> E-Mail </span></td>
+        <td><span th:text="${failedEmailTransaction.getPhone()}"> Phone </span></td>
+        <td><span th:text="${failedEmailTransaction.getResult()}"> Ergebnis </span></td>
+        <td><span th:text="${failedEmailTransaction.getSaveTime()}"> Erfasst </span></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>
